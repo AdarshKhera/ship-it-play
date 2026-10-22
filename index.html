@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ship It: a 3 minute office brawler</title>
+<meta name="description" content="Ship It is a phone-first tag-team brawler set in the office. Match your hero to the problem, smash POWER, ship the sprint. Play it in your browser.">
+<meta name="theme-color" content="#171a3d">
+<meta property="og:title" content="Ship It: a 3 minute office brawler">
+<meta property="og:description" content="Tag-team your way through the workday. Play it in your browser, best on a phone in landscape.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://adarshkhera.github.io/ship-it-play/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="play/assets/icons/favicon-64.png">
+<link rel="preload" href="fonts/fredoka-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face { font-family: "Fredoka"; src: url("fonts/fredoka-latin.woff2") format("woff2"); font-weight: 300 700; font-display: swap; }
+:root {
+  --bg: #171a3d; --bg2: #101333; --card: #1f2352; --line: #2f3578; --ink: #0d0f26;
+  --text: #eef0ff; --muted: #b3b9e6; --yellow: #ffe14a; --amber: #ffb627; --code: #3aa0ff; --design: #ff4fa3; --process: #ffb627; --test: #3ddc84;
+  --gutter: 16px; --radius: 22px;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body { margin: 0; background: radial-gradient(1200px 500px at 50% -80px, #3a41a0 0%, transparent 70%), var(--bg); color: var(--text); font-family: "Fredoka", system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 18px; line-height: 1.5; overflow-x: hidden; padding-bottom: calc(92px + env(safe-area-inset-bottom)); }
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 var(--gutter); }
+section { padding: 44px 0 8px; }
+h1, h2, h3 { line-height: 1.1; margin: 0; font-weight: 700; }
+h1 { font-size: clamp(54px, 17vw, 96px); color: var(--yellow); letter-spacing: 1px; text-shadow: 0 5px 0 #c47f00, 0 8px 0 var(--ink); -webkit-text-stroke: 3px var(--ink); paint-order: stroke fill; }
+h2 { font-size: clamp(30px, 8vw, 40px); color: var(--yellow); margin-bottom: 14px; }
+h3 { font-size: 22px; margin-bottom: 4px; }
+p { margin: 0 0 14px; color: var(--text); }
+.muted { color: var(--muted); }
+.eyebrow { font-size: 14px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--amber); margin-bottom: 8px; }
+
+.hero { padding-top: 34px; text-align: center; }
+.hero .lead { font-size: clamp(20px, 5.4vw, 26px); color: #dfe3ff; font-weight: 500; margin: 12px auto 20px; max-width: 30ch; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 22px; }
+.chip { font-size: 14px; font-weight: 600; padding: 5px 12px; border-radius: 999px; background: rgba(255,255,255,0.1); border: 2px solid var(--line); color: var(--muted); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 60px; padding: 0 30px; border-radius: 999px; font-family: inherit; font-size: 24px; font-weight: 700; text-decoration: none; color: var(--ink); background: linear-gradient(#ffe27a, #ffb627); border: 4px solid var(--ink); box-shadow: 0 6px 0 #a96b00, 0 10px 0 var(--ink); transition: transform .08s, box-shadow .08s; -webkit-tap-highlight-color: transparent; }
+.btn:active { transform: translateY(5px); box-shadow: 0 1px 0 #a96b00, 0 5px 0 var(--ink); }
+.btn.alt { background: linear-gradient(#a3afff, #6c7bff); color: #fff; box-shadow: 0 6px 0 #3d4acb, 0 10px 0 var(--ink); }
+.cta-note { font-size: 15px; color: var(--muted); margin: 18px auto 0; max-width: 34ch; }
+.shot { border-radius: var(--radius); border: 4px solid var(--ink); box-shadow: 0 8px 0 var(--ink), 0 24px 50px rgba(0,0,0,0.35); background: var(--bg2); overflow: hidden; }
+.shot img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+figure { margin: 0; }
+figcaption { font-size: 15px; color: var(--muted); margin-top: 14px; text-align: center; }
+.hero .shot { margin-top: 36px; }
+
+.facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 24px 0 4px; }
+.fact { background: var(--card); border: 3px solid var(--ink); border-radius: 18px; padding: 14px 14px 12px; text-align: center; }
+.fact b { display: block; font-size: 38px; color: var(--yellow); line-height: 1; }
+.fact span { font-size: 14px; color: var(--muted); }
+
+.steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 34px; counter-reset: step; }
+.steps li { counter-increment: step; }
+.steps li > h3::before { content: counter(step); display: inline-grid; place-items: center; width: 34px; height: 34px; margin-right: 10px; border-radius: 50%; background: var(--yellow); color: var(--ink); font-size: 20px; border: 3px solid var(--ink); }
+.steps .shot { margin: 14px 0 0; }
+.tags { display: flex; gap: 8px; flex-wrap: wrap; margin: 6px 0 12px; }
+.tag { font-size: 13px; font-weight: 700; letter-spacing: 1px; padding: 3px 11px; border-radius: 999px; color: var(--ink); border: 2.5px solid var(--ink); }
+.tag.CODE { background: var(--code); } .tag.DESIGN { background: var(--design); } .tag.PROCESS { background: var(--process); } .tag.TEST { background: var(--test); }
+
+.heroes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.hcard { background: var(--card); border: 3px solid var(--ink); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; }
+.hcard img { width: 100%; aspect-ratio: 1; }
+.hbody { padding: 10px 12px 14px; }
+.hbody h3 { font-size: 20px; margin: 0; }
+.hbody .role { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+.hbody .power { font-size: 14px; font-weight: 600; color: var(--yellow); }
+.hbody .quip { font-size: 13px; color: var(--muted); margin-top: 6px; font-style: italic; }
+.hbody .unlock { font-size: 12px; color: #7f88b8; margin-top: 6px; }
+
+.levels { display: grid; gap: 30px; }
+.level .shot { margin-bottom: 14px; }
+.level h3 { font-size: 26px; }
+.perk { display: inline-block; font-size: 14px; font-weight: 600; padding: 4px 12px; border-radius: 999px; margin: 4px 0 10px; color: var(--ink); background: var(--amber); border: 2.5px solid var(--ink); }
+.perk.green { background: #3ddc84; } .perk.violet { background: #b28dff; }
+
+.cols { display: grid; gap: 28px; }
+.pair { display: grid; gap: 14px; margin-top: 18px; }
+.notes { padding: 0; margin: 0; list-style: none; display: grid; gap: 12px; }
+.notes li { background: var(--card); border: 3px solid var(--ink); border-radius: 18px; padding: 14px 16px; }
+.notes li b { display: block; color: var(--yellow); font-size: 19px; margin-bottom: 2px; }
+.notes li span { color: var(--muted); font-size: 16px; }
+
+.log { list-style: none; margin: 0; padding: 0 0 0 20px; border-left: 4px solid var(--line); display: grid; gap: 26px; }
+.log li { position: relative; }
+.log li::before { content: ""; position: absolute; left: -31px; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: var(--yellow); border: 3px solid var(--ink); }
+.log time { font-size: 14px; font-weight: 600; color: var(--amber); letter-spacing: 1px; }
+.log h3 { font-size: 22px; margin: 2px 0 6px; }
+.log ul { margin: 0; padding-left: 20px; color: var(--muted); font-size: 16px; }
+.log li li { margin-bottom: 4px; }
+.log li li::before { content: none; }
+
+.ask { background: var(--card); border: 4px solid var(--ink); border-radius: var(--radius); padding: 22px 20px; text-align: center; margin-top: 8px; }
+.ask ul { text-align: left; max-width: 34ch; margin: 0 auto 20px; padding-left: 22px; color: var(--muted); }
+footer { padding: 40px 0 8px; font-size: 14px; color: #8a92c8; text-align: center; }
+footer a { color: var(--muted); }
+
+.dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; padding: 10px var(--gutter) calc(10px + env(safe-area-inset-bottom)); background: linear-gradient(transparent, rgba(16,19,51,0.96) 40%); display: flex; justify-content: center; pointer-events: none; transform: translateY(120%); transition: transform .25s; }
+.dock.on { transform: none; }
+.dock .btn { pointer-events: auto; width: min(100%, 420px); font-size: 22px; min-height: 56px; }
+
+@media (min-width: 640px) {
+  body { font-size: 19px; }
+  .heroes { grid-template-columns: repeat(3, 1fr); }
+  .facts { grid-template-columns: repeat(4, 1fr); }
+  .pair { grid-template-columns: 1fr 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .dock, .btn { transition: none; } }
+</style>
+</head>
+<body>
+
+<header class="hero wrap">
+  <div class="eyebrow">Case study</div>
+  <h1>SHIP IT</h1>
+  <p class="lead">A three minute office brawler you play with your thumbs.</p>
+  <div class="chips"><span class="chip">Phone first</span><span class="chip">Plays in the browser</span><span class="chip">No install</span></div>
+  <a class="btn" id="play-top" href="play/">PLAY NOW</a>
+  <p class="cta-note">Best in landscape on your phone. Open the share menu and tap Add to Home Screen for fullscreen.</p>
+  <figure class="shot"><picture><source media="(max-width: 700px)" srcset="img/home-640.webp"><img src="img/home-1280.webp" width="1280" height="720" alt="Ship It home screen with the squad of Dave, Mei and Sam and a big PLAY button"></picture></figure>
+</header>
+
+<main class="wrap">
+
+<section id="pitch">
+  <div class="eyebrow">The pitch</div>
+  <h2>Tag-team through the workday</h2>
+  <p>Bugs, scope creep, meeting invites and Slack pings come at you from every side. You lead a squad of three. Your hero fights on its own, so your thumbs do the thinking: who should be out there, and when to hit POWER.</p>
+  <p>It is built for the gap between meetings. One run is about three minutes, there is nothing to learn before you start, and every power is bigger than you expect.</p>
+  <div class="facts">
+    <div class="fact"><b>12</b><span>playable heroes</span></div>
+    <div class="fact"><b>3</b><span>levels</span></div>
+    <div class="fact"><b>48</b><span>enemy types</span></div>
+    <div class="fact"><b>45</b><span>automated tests</span></div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="eyebrow">How it plays</div>
+  <h2>Three ideas, no tutorial wall</h2>
+  <ol class="steps">
+    <li>
+      <h3>Match the colour</h3>
+      <p>Every enemy health bar is split into colours: CODE, DESIGN, PROCESS, TEST. A hero hits its own colour 2.4x harder and the wrong one barely scratches it. A squad of three can never cover all four, so swapping heroes is the game.</p>
+      <div class="tags"><span class="tag CODE">CODE</span><span class="tag DESIGN">DESIGN</span><span class="tag PROCESS">PROCESS</span><span class="tag TEST">TEST</span></div>
+      <figure class="shot"><picture><source media="(max-width: 700px)" srcset="img/office-640.webp"><img src="img/office-1280.webp" width="1280" height="720" loading="lazy" alt="A crowd of enemies in the office, each with a coloured health bar and a name"></picture></figure>
+    </li>
+    <li>
+      <h3>Charge it, then smash POWER</h3>
+      <p>One shared meter fills a pip every four seconds. Fire at one, two or three pips: each tier is bigger than the last. Three pips is a screen wrecker, and every hero has a different one.</p>
+      <figure class="shot"><picture><source media="(max-width: 700px)" srcset="img/power-640.webp"><img src="img/power-1280.webp" width="1280" height="720" loading="lazy" alt="Dave's tier three Force Push blasting a ring of enemies"></picture></figure>
+    </li>
+    <li>
+      <h3>Call in a DRI</h3>
+      <p>When the biggest incident hits, a Directly Responsible Individual drops in for 18 seconds, hits every colour equally and clears most of the wave. Then they leave. You still have to survive the rest.</p>
+      <figure class="shot"><picture><source media="(max-width: 700px)" srcset="img/dri-640.webp"><img src="img/dri-1280.webp" width="1280" height="720" loading="lazy" alt="A banner reading DRI Ben has joined while a surge of enemies swarms the pool"></picture></figure>
+    </li>
+  </ol>
+</section>
+
+<section id="team">
+  <div class="eyebrow">The squad</div>
+  <h2>12 heroes, four roles</h2>
+  <p>Each hero has a colour, a weapon, a favourite drink for Overdrive and a power of their own. Eight of them unlock as you reach later waves. You can rename any of them, because Dave should be whoever you want him to be.</p>
+  <div class="heroes">
+    <article class="hcard"><img src="img/hero-dave.webp" width="220" height="220" loading="lazy" alt="Dave"><div class="hbody"><h3>Dave</h3><div class="role">Senior Engineer</div><span class="tag CODE">CODE</span><div class="power" style="margin-top:8px">Force Push</div><div class="quip">Ships on Fridays. Regrets nothing.</div><div class="unlock">Available from the start</div></div></article>
+    <article class="hcard"><img src="img/hero-nadia.webp" width="220" height="220" loading="lazy" alt="Nadia"><div class="hbody"><h3>Nadia</h3><div class="role">Backend Engineer</div><span class="tag CODE">CODE</span><div class="power" style="margin-top:8px">Hotfix</div><div class="quip">Zero downtime. Zero small talk.</div><div class="unlock">Unlocks at wave 2</div></div></article>
+    <article class="hcard"><img src="img/hero-kiran.webp" width="220" height="220" loading="lazy" alt="Kiran"><div class="hbody"><h3>Kiran</h3><div class="role">DevOps Engineer</div><span class="tag CODE">CODE</span><div class="power" style="margin-top:8px">Rollback</div><div class="quip">It works on every machine now.</div><div class="unlock">Unlocks at wave 4</div></div></article>
+    <article class="hcard"><img src="img/hero-mei.webp" width="220" height="220" loading="lazy" alt="Mei"><div class="hbody"><h3>Mei</h3><div class="role">Product Designer</div><span class="tag DESIGN">DESIGN</span><div class="power" style="margin-top:8px">Frame Lock</div><div class="quip">Pixel perfect or nothing.</div><div class="unlock">Available from the start</div></div></article>
+    <article class="hcard"><img src="img/hero-zoe.webp" width="220" height="220" loading="lazy" alt="Zoe"><div class="hbody"><h3>Zoe</h3><div class="role">Motion Designer</div><span class="tag DESIGN">DESIGN</span><div class="power" style="margin-top:8px">Color Burst</div><div class="quip">Everything needs more easing.</div><div class="unlock">Unlocks at wave 2</div></div></article>
+    <article class="hcard"><img src="img/hero-theo.webp" width="220" height="220" loading="lazy" alt="Theo"><div class="hbody"><h3>Theo</h3><div class="role">UX Researcher</div><span class="tag DESIGN">DESIGN</span><div class="power" style="margin-top:8px">User Interview</div><div class="quip">But what do users actually want?</div><div class="unlock">Unlocks at wave 4</div></div></article>
+    <article class="hcard"><img src="img/hero-sam.webp" width="220" height="220" loading="lazy" alt="Sam"><div class="hbody"><h3>Sam</h3><div class="role">Product Manager</div><span class="tag PROCESS">PROCESS</span><div class="power" style="margin-top:8px">Scope Cut</div><div class="quip">Let&#x27;s take that offline.</div><div class="unlock">Available from the start</div></div></article>
+    <article class="hcard"><img src="img/hero-priya.webp" width="220" height="220" loading="lazy" alt="Priya"><div class="hbody"><h3>Priya</h3><div class="role">Scrum Master</div><span class="tag PROCESS">PROCESS</span><div class="power" style="margin-top:8px">Sprint Reset</div><div class="quip">Quick sync? Five minutes.</div><div class="unlock">Unlocks at wave 3</div></div></article>
+    <article class="hcard"><img src="img/hero-marcus.webp" width="220" height="220" loading="lazy" alt="Marcus"><div class="hbody"><h3>Marcus</h3><div class="role">Engineering Manager</div><span class="tag PROCESS">PROCESS</span><div class="power" style="margin-top:8px">Air Cover</div><div class="quip">I&#x27;ll take that to leadership.</div><div class="unlock">Unlocks at wave 5</div></div></article>
+    <article class="hcard"><img src="img/hero-jo.webp" width="220" height="220" loading="lazy" alt="Jo"><div class="hbody"><h3>Jo</h3><div class="role">QA Engineer</div><span class="tag TEST">TEST</span><div class="power" style="margin-top:8px">Edge Case</div><div class="quip">Found it. Again.</div><div class="unlock">Available from the start</div></div></article>
+    <article class="hcard"><img src="img/hero-lena.webp" width="220" height="220" loading="lazy" alt="Lena"><div class="hbody"><h3>Lena</h3><div class="role">SDET</div><span class="tag TEST">TEST</span><div class="power" style="margin-top:8px">Chaos Monkey</div><div class="quip">I automated your job. Sorry.</div><div class="unlock">Unlocks at wave 3</div></div></article>
+    <article class="hcard"><img src="img/hero-omar.webp" width="220" height="220" loading="lazy" alt="Omar"><div class="hbody"><h3>Omar</h3><div class="role">Security Engineer</div><span class="tag TEST">TEST</span><div class="power" style="margin-top:8px">Pen Test</div><div class="quip">That&#x27;s a vulnerability.</div><div class="unlock">Unlocks at wave 5</div></div></article>
+  </div>
+  <figure class="shot" style="margin-top:26px"><picture><source media="(max-width: 700px)" srcset="img/squad-640.webp"><img src="img/squad-1280.webp" width="1280" height="720" loading="lazy" alt="The squad picker showing all twelve heroes with a detail panel"></picture><figcaption style="padding:0 12px 12px">Pick your three. You can swap the whole squad after every wave.</figcaption></figure>
+</section>
+
+<section id="levels">
+  <div class="eyebrow">The levels</div>
+  <h2>Three places to ship</h2>
+  <div class="levels">
+    <article class="level">
+      <figure class="shot"><picture><source media="(max-width: 700px)" srcset="img/office-640.webp"><img src="img/office-1280.webp" width="1280" height="720" loading="lazy" alt="The office level"></picture></figure>
+      <h3>1. The Office</h3>
+      <span class="perk">Classic rules</span>
+      <p class="muted">Five waves from Standup to Demo Day. Bugs, Null Pointers, Scope Creep and Meeting Invites, then a final boss with all four colours on his bar.</p>
+    </article>
+    <article class="level">
+      <figure class="shot"><picture><source media="(max-width: 700px)" srcset="img/park-640.webp"><img src="img/park-1280.webp" width="1280" height="720" loading="lazy" alt="The staycation level, a sunny park with a pool"></picture></figure>
+      <h3>2. Staycation</h3>
+      <span class="perk green">Cool box: 40% more drinks</span>
+      <p class="muted">Out of office, and work did not get the memo. Sunburnt Bugs, Auto-Replies and Itinerary Creep crash the pool party. Ends with Monday Morning.</p>
+    </article>
+    <article class="level">
+      <figure class="shot"><picture><source media="(max-width: 700px)" srcset="img/camp-640.webp"><img src="img/camp-1280.webp" width="1280" height="720" loading="lazy" alt="The offsite level, a campsite at dusk with a campfire"></picture></figure>
+      <h3>3. The Offsite</h3>
+      <span class="perk violet">Campfire: bench heals 2x faster</span>
+      <p class="muted">Trust Falls, Merge Conflicts and a Regression Bear at dusk. Ends with the Annual Review. Each level unlocks when you clear the one before.</p>
+    </article>
+  </div>
+  <div class="pair">
+    <figure class="shot"><picture><source media="(max-width: 700px)" srcset="img/levels-640.webp"><img src="img/levels-1280.webp" width="1280" height="720" loading="lazy" alt="The level select screen"></picture></figure>
+    <figure class="shot"><picture><source media="(max-width: 700px)" srcset="img/boss-640.webp"><img src="img/boss-1280.webp" width="1280" height="720" loading="lazy" alt="Boss intro card for Demo Day"></picture></figure>
+  </div>
+</section>
+
+<section id="design">
+  <div class="eyebrow">Design decisions</div>
+  <h2>What shaped it</h2>
+  <ul class="notes">
+    <li><b>Strategy over reflexes</b><span>Auto-attack and one thumb stick keep the hands simple. The skill is picking who is out there and when to fire POWER, so a thoughtful player beats a twitchy one.</span></li>
+    <li><b>Enemies are day-to-day problems</b><span>Nobody needs a tutorial for a Meeting Invite. Each enemy wears a tiny badge and name, so the joke and the colour are readable at a glance.</span></li>
+    <li><b>Instant gratification</b><span>No menus before the first fight. Powers are huge on purpose, and the score screen counts up like an arcade cabinet.</span></li>
+    <li><b>Calm screen, loud moments</b><span>The world is soft and spaced out so that surges, bosses and powers are what pop. Names stay big while the camera zooms out.</span></li>
+    <li><b>Made for phones first</b><span>Landscape, big thumb targets, no hover, offline after the first load, and an Add to Home Screen install with no store.</span></li>
+  </ul>
+  <div class="pair">
+    <figure class="shot"><picture><source media="(max-width: 700px)" srcset="img/incident-640.webp"><img src="img/incident-1280.webp" width="1280" height="720" loading="lazy" alt="Incident banner: Backlog explosion"></picture></figure>
+    <figure class="shot"><picture><source media="(max-width: 700px)" srcset="img/results-640.webp"><img src="img/results-1280.webp" width="1280" height="720" loading="lazy" alt="The results screen with stars, a score breakdown and a Next level button"></picture></figure>
+  </div>
+</section>
+
+<section id="build">
+  <div class="eyebrow">How it was built</div>
+  <h2>Small pieces, tested hard</h2>
+  <ul class="notes">
+    <li><b>No engine, no dependencies</b><span>Plain JavaScript modules and a canvas. A player can load it in a couple of seconds and it runs on an old phone.</span></li>
+    <li><b>Art is recombined, not drawn from scratch</b><span>Free CC0 vector character parts, hue shifted per colour tag and composited by a script into twelve heroes and a full enemy roster.</span></li>
+    <li><b>Balanced by robots</b><span>Headless bots play the whole game at different skill levels. A player who stands still takes about six times the damage of a good one, so skill matters but nobody is locked out.</span></li>
+    <li><b>Rules live in plain functions</b><span>Damage, scoring, unlocks and level progress are small pure functions with 45 automated tests, so changes do not quietly break the maths.</span></li>
+    <li><b>Reviewed and hardened</b><span>A code review caught real problems before release: offline caching, blocked storage, a keyboard edge case in the name editor and a tie in the scoreboard.</span></li>
+  </ul>
+</section>
+
+<section id="updates">
+  <div class="eyebrow">Updates</div>
+  <h2>What changed, newest first</h2>
+  <ol class="log">
+    <li><time datetime="2026-10-22">2026-10-22</time><h3>Two new levels: Staycation and The Offsite</h3><ul><li>Outdoor park with a pool, and a campsite at dusk, each with its own enemies, badges and boss</li><li>Level select screen, levels unlock in order, NEXT LEVEL button after a win</li><li>Each level has a perk: more drinks on Staycation, faster bench healing at the Offsite</li><li>Scores and share text now say which level you played</li></ul></li>
+    <li><time datetime="2026-10-22">2026-10-22</time><h3>Hardening pass</h3><ul><li>Offline play works after the first visit, and updates no longer leave a half-old game</li><li>The game starts even when the browser blocks storage</li><li>Tied scores no longer claim a new personal best</li><li>Fixed a name editor keyboard bug that dropped a hero from the squad</li></ul></li>
+    <li><time datetime="2026-10-21">2026-10-21</time><h3>Version 2: the full game</h3><ul><li>Twelve heroes with roles and personalities, unlocked by how far you get</li><li>DRIs: bonus heroes who drop into the biggest surges</li><li>Named enemies with badges, incident banners and a final boss</li><li>Top ten scores, rename any hero, share your score</li><li>Loader, home screen, how to play, installable and playable offline</li></ul></li>
+  </ol>
+</section>
+
+<section id="feedback">
+  <div class="eyebrow">Your turn</div>
+  <h2>Play it for five minutes</h2>
+  <div class="ask">
+    <ul>
+      <li>Where did you get stuck or confused?</li>
+      <li>Which hero did you love or ignore?</li>
+      <li>Did any level feel too easy or too hard?</li>
+    </ul>
+    <a class="btn" id="play-bottom" href="play/">PLAY NOW</a>
+    <p class="cta-note">Send me what you find. Screenshots help.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="wrap">
+  <p>Character and enemy art by RGS_Dev (CC0), recombined and recoloured. Font: Fredoka (OFL). Built with Claude Code.</p>
+  <p>Last updated 2026-10-22</p>
+</footer>
+
+<div class="dock" id="dock" aria-hidden="true"><a class="btn" href="play/" tabindex="-1">PLAY NOW</a></div>
+
+<script>
+(function () {
+  var dock = document.getElementById('dock');
+  var top = document.getElementById('play-top');
+  var bottom = document.getElementById('play-bottom');
+  if (!dock || !('IntersectionObserver' in window)) { if (dock) dock.className = 'dock on'; return; }
+  var seen = { top: true, bottom: false };
+  function update() { dock.className = seen.top || seen.bottom ? 'dock' : 'dock on'; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { seen[e.target === top ? 'top' : 'bottom'] = e.isIntersecting; });
+    update();
+  });
+  io.observe(top); io.observe(bottom);
+})();
+</script>
+</body>
+</html>

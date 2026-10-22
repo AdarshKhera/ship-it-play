@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#171a3d">
+<meta name="description" content="Ship It: a bite-sized office tag-team brawler. Pick your squad, match the colours, smash your power.">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Ship It">
+<title>Ship It</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="assets/icons/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/fredoka-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  @font-face { font-family: "Fredoka"; src: url("assets/fonts/fredoka-latin.woff2") format("woff2"); font-weight: 400 700; font-style: normal; font-display: swap; }
+  html, body { margin: 0; height: 100%; background: #0f1230; overflow: hidden; overscroll-behavior: none; }
+  body { display: flex; align-items: center; justify-content: center; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; font-family: "Fredoka", system-ui, sans-serif; }
+  canvas { display: block; touch-action: none; background: #171a3d; }
+  #rotate { display: none; position: fixed; inset: 0; z-index: 10; background: #171a3d; color: #fff; align-items: center; justify-content: center; flex-direction: column; gap: 22px; font: 600 22px/1.3 "Fredoka", system-ui, sans-serif; text-align: center; padding: 24px; }
+  #rotate .phone { width: 64px; height: 108px; border: 6px solid #ffe14a; border-radius: 16px; position: relative; animation: turn 2.4s ease-in-out infinite; }
+  #rotate .phone::after { content: ""; position: absolute; left: 50%; bottom: 8px; width: 16px; height: 6px; margin-left: -8px; border-radius: 3px; background: #ffe14a; }
+  @keyframes turn { 0%, 25% { transform: rotate(0); } 60%, 100% { transform: rotate(-90deg); } }
+  @media (orientation: portrait) and (max-width: 900px) { #rotate { display: flex; } }
+  @media (prefers-reduced-motion: reduce) { #rotate .phone { animation: none; } }
+
+  #editor { position: fixed; inset: 0; z-index: 20; display: flex; align-items: center; justify-content: center; background: rgba(8, 10, 28, 0.72); padding: 16px; box-sizing: border-box; }
+  #editor[hidden] { display: none; }
+  #editor-form { width: min(440px, 100%); background: #171b44; border: 5px solid #15171f; border-radius: 26px; padding: 22px 22px 20px; box-shadow: 0 8px 0 #15171f; color: #fff; box-sizing: border-box; }
+  #editor-title { margin: 0 0 14px; font-size: 28px; font-weight: 700; color: #ffe14a; }
+  #editor-fields label { display: block; margin-bottom: 14px; }
+  #editor-fields span { display: block; font-size: 15px; font-weight: 600; color: #aab1d0; margin-bottom: 6px; }
+  #editor-fields input { width: 100%; box-sizing: border-box; font: 600 22px "Fredoka", system-ui, sans-serif; color: #fff; background: #0f1230; border: 4px solid #15171f; border-radius: 16px; padding: 12px 14px; outline: none; }
+  #editor-fields input:focus { border-color: #ffb627; }
+  #editor .row { display: flex; gap: 10px; align-items: center; margin-top: 6px; }
+  #editor .grow { flex: 1; }
+  #editor button { font: 700 18px "Fredoka", system-ui, sans-serif; border: 4px solid #15171f; border-radius: 999px; padding: 10px 18px; cursor: pointer; background: #3a4070; color: #fff; box-shadow: 0 4px 0 #15171f; }
+  #editor button.primary { background: #ffb627; color: #15171f; }
+  #editor button:active { transform: translateY(3px); box-shadow: 0 1px 0 #15171f; }
+</style>
+</head>
+<body>
+<canvas id="game" width="1280" height="720" aria-label="Ship It game"></canvas>
+<div id="rotate" role="alert"><div class="phone"></div><div>Rotate your phone to play</div></div>
+<div id="editor" hidden role="dialog" aria-modal="true" aria-labelledby="editor-title">
+  <form id="editor-form" autocomplete="off">
+    <h2 id="editor-title"></h2>
+    <div id="editor-fields"></div>
+    <div class="row">
+      <button type="button" id="editor-reset">Reset</button>
+      <span class="grow"></span>
+      <button type="button" id="editor-cancel">Cancel</button>
+      <button type="submit" class="primary">Save</button>
+    </div>
+  </form>
+</div>
+<noscript>Ship It needs JavaScript to run.</noscript>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
