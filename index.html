@@ -6,6 +6,7 @@
 <title>Ship It: a 3 minute office brawler</title>
 <meta name="description" content="Ship It is a phone-first tag-team brawler set in the office. Match your hero to the problem, smash POWER, ship the sprint. Play it in your browser.">
 <meta name="theme-color" content="#171a3d">
+<meta name="author" content="Adarsh Khera">
 <meta property="og:title" content="Ship It: a 3 minute office brawler">
 <meta property="og:description" content="Tag-team your way through the workday. Play it in your browser, best on a phone in landscape.">
 <meta property="og:type" content="website">
@@ -36,6 +37,7 @@ p { margin: 0 0 14px; color: var(--text); }
 .eyebrow { font-size: 14px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--amber); margin-bottom: 8px; }
 
 .hero { padding-top: 34px; text-align: center; }
+.by { font-size: 15px; font-weight: 600; color: var(--muted); margin: -8px 0 18px; letter-spacing: .5px; }
 .hero .lead { font-size: clamp(20px, 5.4vw, 26px); color: #dfe3ff; font-weight: 500; margin: 12px auto 20px; max-width: 30ch; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 22px; }
 .chip { font-size: 14px; font-weight: 600; padding: 5px 12px; border-radius: 999px; background: rgba(255,255,255,0.1); border: 2px solid var(--line); color: var(--muted); }
@@ -118,6 +120,7 @@ footer a { color: var(--muted); }
   <div class="eyebrow">Case study</div>
   <h1>SHIP IT</h1>
   <p class="lead">A three minute office brawler you play with your thumbs.</p>
+  <p class="by">Created by Adarsh Khera</p>
   <div class="chips"><span class="chip">Phone first</span><span class="chip">Plays in the browser</span><span class="chip">No install</span></div>
   <a class="btn" id="play-top" href="play/">PLAY NOW</a>
   <p class="cta-note">Best in landscape on your phone. Open the share menu and tap Add to Home Screen for fullscreen.</p>
@@ -244,6 +247,7 @@ footer a { color: var(--muted); }
   <div class="eyebrow">Updates</div>
   <h2>What changed, newest first</h2>
   <ol class="log">
+    <li><time datetime="2026-10-22">2026-10-22</time><h3>Ready to share</h3><ul><li>Creator credit on the home screen, loader and this page</li><li>Case study and live game published for playtesting</li></ul></li>
     <li><time datetime="2026-10-22">2026-10-22</time><h3>Two new levels: Staycation and The Offsite</h3><ul><li>Outdoor park with a pool, and a campsite at dusk, each with its own enemies, badges and boss</li><li>Level select screen, levels unlock in order, NEXT LEVEL button after a win</li><li>Each level has a perk: more drinks on Staycation, faster bench healing at the Offsite</li><li>Scores and share text now say which level you played</li></ul></li>
     <li><time datetime="2026-10-22">2026-10-22</time><h3>Hardening pass</h3><ul><li>Offline play works after the first visit, and updates no longer leave a half-old game</li><li>The game starts even when the browser blocks storage</li><li>Tied scores no longer claim a new personal best</li><li>Fixed a name editor keyboard bug that dropped a hero from the squad</li></ul></li>
     <li><time datetime="2026-10-21">2026-10-21</time><h3>Version 2: the full game</h3><ul><li>Twelve heroes with roles and personalities, unlocked by how far you get</li><li>DRIs: bonus heroes who drop into the biggest surges</li><li>Named enemies with badges, incident banners and a final boss</li><li>Top ten scores, rename any hero, share your score</li><li>Loader, home screen, how to play, installable and playable offline</li></ul></li>
@@ -267,6 +271,7 @@ footer a { color: var(--muted); }
 </main>
 
 <footer class="wrap">
+  <p><b>Ship It</b> was created by Adarsh Khera.</p>
   <p>Character and enemy art by RGS_Dev (CC0), recombined and recoloured. Font: Fredoka (OFL). Built with Claude Code.</p>
   <p>Last updated 2026-10-22</p>
 </footer>

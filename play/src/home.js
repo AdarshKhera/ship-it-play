@@ -43,6 +43,7 @@ export function drawHome(ctx, app) {
   ui.round(ctx, 'toggle:sound', view.w - 142, 47, 28, (c, r, col) => speakerIcon(c, r, col, profile.settings.sound));
   ui.round(ctx, 'go:settings', view.w - 76, 47, 28, (c, r, col) => gearIcon(c, r, col));
 
+  text(ctx, 'Created by Adarsh Khera', cx, 30, { size: 17, align: 'center', base: 'middle', color: '#c9ceee', weight: 600 });
   logo(ctx, cx, 122, t);
   text(ctx, 'Tag-team your way through the workday', cx, 206, { size: 28, align: 'center', base: 'middle', color: '#dfe3ff', weight: 600 });
 

@@ -29,5 +29,6 @@ export function drawLoader(ctx, progress, t) {
   rrect(ctx, cx - w / 2, 420, fw, 28, 14); ctx.fillStyle = '#ffb627'; ctx.fill();
   ctx.fillStyle = 'rgba(255,255,255,0.35)'; rrect(ctx, cx - w / 2 + 6, 424, Math.max(16, fw - 12), 8, 4); ctx.fill();
   text(ctx, `Loading ${Math.round(Math.min(1, progress) * 100)}%`, cx, 484, { size: 22, align: 'center', base: 'middle', color: '#c9ceee', weight: 600 });
+  text(ctx, 'Created by Adarsh Khera', cx, 680, { size: 17, align: 'center', base: 'middle', color: '#8d95c9', weight: 600 });
   text(ctx, TIPS[Math.floor(t / 2.6) % TIPS.length], cx, 560, { size: 22, align: 'center', base: 'middle', color: '#aab1d0', weight: 600 });
 }
