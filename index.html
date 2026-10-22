@@ -96,6 +96,10 @@ figcaption { font-size: 15px; color: var(--muted); margin-top: 14px; text-align:
 .log li li { margin-bottom: 4px; }
 .log li li::before { content: none; }
 
+.apk { background: var(--card); border: 3px solid var(--ink); border-radius: var(--radius); padding: 20px 18px; margin: 0 0 14px; text-align: center; }
+.apk .btn { width: 100%; max-width: 360px; }
+.apk-steps { text-align: left; max-width: 36ch; margin: 18px auto 10px; padding-left: 22px; color: var(--muted); font-size: 16px; }
+.small { font-size: 14px; margin: 0; }
 .ask { background: var(--card); border: 4px solid var(--ink); border-radius: var(--radius); padding: 22px 20px; text-align: center; margin-top: 8px; }
 .ask ul { text-align: left; max-width: 34ch; margin: 0 auto 20px; padding-left: 22px; color: var(--muted); }
 footer { padding: 40px 0 8px; font-size: 14px; color: #8a92c8; text-align: center; }
@@ -146,6 +150,17 @@ footer a { color: var(--muted); }
   <div class="eyebrow">Play on your phone</div>
   <h2>Get it fullscreen</h2>
   <p>The game runs in your browser, but a browser bar steals screen space. Install it once and it opens like an app, fullscreen and offline.</p>
+  <div class="apk">
+    <h3>Android app (APK)</h3>
+    <p class="muted">A small 8 MB app that runs the game fullscreen in landscape and works offline.</p>
+    <a class="btn alt" href="https://github.com/AdarshKhera/ship-it-play/releases/latest/download/ShipIt.apk" rel="noopener">DOWNLOAD APK</a>
+    <ol class="apk-steps">
+      <li>Tap the button and let your phone download the file.</li>
+      <li>Open the file. If Android asks, allow your browser to install unknown apps.</li>
+      <li>Tap Install, then open Ship It.</li>
+    </ol>
+    <p class="muted small">Not on the Play Store yet, so Android shows a safety prompt. The app is signed by me and only bundles this game. iPhone cannot install files like this, use Add to Home Screen below.</p>
+  </div>
   <ul class="notes">
     <li><b>Android (Chrome)</b><span>Open the game, tap the fullscreen button at the top right, or open the Chrome menu and choose Install app. It lands on your home screen as a real app.</span></li>
     <li><b>iPhone and iPad (Safari)</b><span>Open the game, tap Share, then Add to Home Screen. Open it from the new icon. iPhones do not allow a web page to go fullscreen on its own, so this is the way.</span></li>
@@ -258,6 +273,7 @@ footer a { color: var(--muted); }
   <div class="eyebrow">Updates</div>
   <h2>What changed, newest first</h2>
   <ol class="log">
+    <li><time datetime="2026-10-23">2026-10-23</time><h3>Android app</h3><ul><li>Download an APK from the install section: fullscreen, landscape and offline</li><li>The score share button opens the Android share sheet in the app</li></ul></li>
     <li><time datetime="2026-10-23">2026-10-23</time><h3>Fullscreen and phone fit</h3><ul><li>Fullscreen button on the home screen, and the game goes fullscreen when you tap PLAY on Android</li><li>The game now respects phone notches and rounded corners, so nothing is cropped on the left and right</li><li>New install guide on this page for Android and iPhone</li></ul></li>
     <li><time datetime="2026-10-22">2026-10-22</time><h3>Ready to share</h3><ul><li>Creator credit on the home screen, loader and this page</li><li>Case study and live game published for playtesting</li></ul></li>
     <li><time datetime="2026-10-22">2026-10-22</time><h3>Two new levels: Staycation and The Offsite</h3><ul><li>Outdoor park with a pool, and a campsite at dusk, each with its own enemies, badges and boss</li><li>Level select screen, levels unlock in order, NEXT LEVEL button after a win</li><li>Each level has a perk: more drinks on Staycation, faster bench healing at the Offsite</li><li>Scores and share text now say which level you played</li></ul></li>

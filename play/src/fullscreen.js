@@ -1,6 +1,7 @@
 const root = () => document.documentElement;
 
-export const isStandalone = () => ['standalone', 'fullscreen'].some(m => window.matchMedia(`(display-mode: ${m})`).matches) || navigator.standalone === true;
+export const isNativeApp = () => /ShipItAndroid/.test(navigator.userAgent);
+export const isStandalone = () => isNativeApp() || ['standalone', 'fullscreen'].some(m => window.matchMedia(`(display-mode: ${m})`).matches) || navigator.standalone === true;
 export const canFullscreen = () => !!(root().requestFullscreen || root().webkitRequestFullscreen) && document.fullscreenEnabled !== false;
 export const isFullscreen = () => !!(document.fullscreenElement || document.webkitFullscreenElement);
 

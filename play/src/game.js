@@ -132,6 +132,7 @@ export function createApp({ canvas, ctx, sprites, audio, input }) {
     if (!entry) { say('Play a round first'); return; }
     const msg = shareText(entry, entry.squad.map(id => labelFor(id).name), location.href.split('?')[0]);
     try {
+      if (window.ShipItNative && window.ShipItNative.share) { window.ShipItNative.share(msg); return; }
       if (navigator.share) { await navigator.share({ text: msg }); return; }
       await navigator.clipboard.writeText(msg);
       say('Score copied. Paste it anywhere!');

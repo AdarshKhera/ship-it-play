@@ -1,5 +1,5 @@
 const PREFIX = 'shipit-';
-const VERSION = `${PREFIX}v7`;
+const VERSION = `${PREFIX}v8`;
 
 const CORE = [
   './', 'index.html', 'manifest.webmanifest', 'assets/fonts/fredoka-latin.woff2',

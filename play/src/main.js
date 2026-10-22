@@ -45,7 +45,7 @@ async function waitForFonts() {
 
 function registerOffline() {
   const local = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname);
-  if (!('serviceWorker' in navigator) || local || location.protocol === 'file:') return;
+  if (!('serviceWorker' in navigator) || local || location.protocol === 'file:' || /ShipItAndroid/.test(navigator.userAgent)) return;
   navigator.serviceWorker.register('sw.js').catch(() => {});
 }
 
