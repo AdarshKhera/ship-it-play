@@ -15,6 +15,7 @@ import { drawHowto, HOWTO_SLIDES } from './howto.js';
 import { drawScores } from './scores.js';
 import { drawLevelSelect } from './levelSelect.js';
 import { levelById } from './levels.js';
+import { canFullscreen, isFullscreen, isStandalone, enterFullscreen, toggleFullscreen } from './fullscreen.js';
 import { drawSettings } from './settings.js';
 import { drawResults } from './results.js';
 import { drawCards, drawPause } from './overlays.js';
@@ -70,6 +71,7 @@ export function createApp({ canvas, ctx, sprites, audio, input }) {
     betweenReady = false;
     resultDone = false;
     input.reset();
+    if (touchSeen && canFullscreen() && !isFullscreen() && !isStandalone()) enterFullscreen();
     navigate('run');
   }
 
@@ -163,6 +165,9 @@ export function createApp({ canvas, ctx, sprites, audio, input }) {
       case 'level:locked': say('Clear the previous level first'); break;
       case 'go:scores': navigate('scores'); break;
       case 'go:settings': app.confirmReset = false; navigate('settings'); break;
+      case 'toggle:fullscreen':
+        if (canFullscreen()) toggleFullscreen(); else say('Tap Share, then Add to Home Screen, for fullscreen');
+        break;
       case 'toggle:sound': setProfile({ ...app.profile, settings: { ...app.profile.settings, sound: !app.profile.settings.sound } }); break;
       case 'toggle:vibration': setProfile({ ...app.profile, settings: { ...app.profile.settings, vibration: !app.profile.settings.vibration } }); vibrate(30); break;
       case 'edit:player': editPlayer(); break;

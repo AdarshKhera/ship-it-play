@@ -123,7 +123,7 @@ footer a { color: var(--muted); }
   <p class="by">Created by Adarsh Khera</p>
   <div class="chips"><span class="chip">Phone first</span><span class="chip">Plays in the browser</span><span class="chip">No install</span></div>
   <a class="btn" id="play-top" href="play/">PLAY NOW</a>
-  <p class="cta-note">Best in landscape on your phone. Open the share menu and tap Add to Home Screen for fullscreen.</p>
+  <p class="cta-note">Best in landscape on your phone. For true fullscreen, see <a href="#install">install it</a> below.</p>
   <figure class="shot"><picture><source media="(max-width: 700px)" srcset="img/home-640.webp"><img src="img/home-1280.webp" width="1280" height="720" alt="Ship It home screen with the squad of Dave, Mei and Sam and a big PLAY button"></picture></figure>
 </header>
 
@@ -140,6 +140,17 @@ footer a { color: var(--muted); }
     <div class="fact"><b>48</b><span>enemy types</span></div>
     <div class="fact"><b>45</b><span>automated tests</span></div>
   </div>
+</section>
+
+<section id="install">
+  <div class="eyebrow">Play on your phone</div>
+  <h2>Get it fullscreen</h2>
+  <p>The game runs in your browser, but a browser bar steals screen space. Install it once and it opens like an app, fullscreen and offline.</p>
+  <ul class="notes">
+    <li><b>Android (Chrome)</b><span>Open the game, tap the fullscreen button at the top right, or open the Chrome menu and choose Install app. It lands on your home screen as a real app.</span></li>
+    <li><b>iPhone and iPad (Safari)</b><span>Open the game, tap Share, then Add to Home Screen. Open it from the new icon. iPhones do not allow a web page to go fullscreen on its own, so this is the way.</span></li>
+    <li><b>Laptop</b><span>Open the game and press the fullscreen button at the top right.</span></li>
+  </ul>
 </section>
 
 <section id="how">
@@ -247,6 +258,7 @@ footer a { color: var(--muted); }
   <div class="eyebrow">Updates</div>
   <h2>What changed, newest first</h2>
   <ol class="log">
+    <li><time datetime="2026-10-23">2026-10-23</time><h3>Fullscreen and phone fit</h3><ul><li>Fullscreen button on the home screen, and the game goes fullscreen when you tap PLAY on Android</li><li>The game now respects phone notches and rounded corners, so nothing is cropped on the left and right</li><li>New install guide on this page for Android and iPhone</li></ul></li>
     <li><time datetime="2026-10-22">2026-10-22</time><h3>Ready to share</h3><ul><li>Creator credit on the home screen, loader and this page</li><li>Case study and live game published for playtesting</li></ul></li>
     <li><time datetime="2026-10-22">2026-10-22</time><h3>Two new levels: Staycation and The Offsite</h3><ul><li>Outdoor park with a pool, and a campsite at dusk, each with its own enemies, badges and boss</li><li>Level select screen, levels unlock in order, NEXT LEVEL button after a win</li><li>Each level has a perk: more drinks on Staycation, faster bench healing at the Offsite</li><li>Scores and share text now say which level you played</li></ul></li>
     <li><time datetime="2026-10-22">2026-10-22</time><h3>Hardening pass</h3><ul><li>Offline play works after the first visit, and updates no longer leave a half-old game</li><li>The game starts even when the browser blocks storage</li><li>Tied scores no longer claim a new personal best</li><li>Fixed a name editor keyboard bug that dropped a hero from the squad</li></ul></li>
@@ -273,7 +285,7 @@ footer a { color: var(--muted); }
 <footer class="wrap">
   <p><b>Ship It</b> was created by Adarsh Khera.</p>
   <p>Character and enemy art by RGS_Dev (CC0), recombined and recoloured. Font: Fredoka (OFL). Built with Claude Code.</p>
-  <p>Last updated 2026-10-22</p>
+  <p>Last updated 2026-10-23</p>
 </footer>
 
 <div class="dock" id="dock" aria-hidden="true"><a class="btn" href="play/" tabindex="-1">PLAY NOW</a></div>

@@ -119,6 +119,17 @@ export function gearIcon(ctx, r, color) {
   ctx.globalCompositeOperation = 'destination-out'; ctx.beginPath(); ctx.arc(0, 0, r * 0.2, 0, TAU); ctx.fill(); ctx.globalCompositeOperation = 'source-over';
 }
 
+export function fullscreenIcon(ctx, r, color, on) {
+  ctx.strokeStyle = color; ctx.lineWidth = 5; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  const far = r * 0.5;
+  const near = r * 0.2;
+  [[-1, -1], [1, -1], [1, 1], [-1, 1]].forEach(([sx, sy]) => {
+    const corner = on ? near : far;
+    const tip = on ? far : near;
+    ctx.beginPath(); ctx.moveTo(sx * tip, sy * corner); ctx.lineTo(sx * corner, sy * corner); ctx.lineTo(sx * corner, sy * tip); ctx.stroke();
+  });
+}
+
 export function pencilIcon(ctx, r, color) {
   ctx.fillStyle = color; ctx.save(); ctx.rotate(-0.8);
   ctx.fillRect(-r * 0.14, -r * 0.62, r * 0.28, r * 0.9);

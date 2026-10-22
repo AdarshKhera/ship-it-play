@@ -8,10 +8,19 @@ import { drawLoader } from './loader.js';
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d', { alpha: false });
 
+function stageSize() {
+  const body = document.body;
+  const cs = getComputedStyle(body);
+  const px = k => parseFloat(cs[k]) || 0;
+  return {
+    vw: Math.max(1, body.clientWidth - px('paddingLeft') - px('paddingRight')),
+    vh: Math.max(1, body.clientHeight - px('paddingTop') - px('paddingBottom')),
+  };
+}
+
 function resize() {
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  const vw = window.innerWidth;
-  const vh = window.innerHeight;
+  const { vw, vh } = stageSize();
   view.w = Math.round(Math.max(1280, Math.min(1640, (view.h * vw) / Math.max(1, vh))));
   const scale = Math.min(vw / view.w, vh / view.h);
   const cssW = Math.floor(view.w * scale);
@@ -23,6 +32,9 @@ function resize() {
 }
 window.addEventListener('resize', resize);
 window.addEventListener('orientationchange', resize);
+if (window.visualViewport) window.visualViewport.addEventListener('resize', resize);
+if ('ResizeObserver' in window) new ResizeObserver(resize).observe(document.body);
+document.addEventListener('fullscreenchange', resize);
 resize();
 
 async function waitForFonts() {

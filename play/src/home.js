@@ -4,7 +4,8 @@ import { LEVELS, levelById } from './levels.js';
 import { drawFrame } from './assets.js';
 import { heroLabel } from './profile.js';
 import { chip, rrect, text, TAU } from './draw.js';
-import { drawBackdrop, gearIcon, speakerIcon } from './ui.js';
+import { drawBackdrop, fullscreenIcon, gearIcon, speakerIcon } from './ui.js';
+import { isFullscreen, isStandalone } from './fullscreen.js';
 
 export function heroIdle(ctx, sprites, id, x, y, scale, t, phase = 0, alpha = 1) {
   const set = sprites[id];
@@ -40,6 +41,7 @@ export function drawHome(ctx, app) {
   rrect(ctx, 28, 24, bw, 46, 23); ctx.fillStyle = 'rgba(14,16,40,0.65)'; ctx.fill(); ctx.lineWidth = 4; ctx.strokeStyle = INK; ctx.stroke();
   text(ctx, label, 28 + bw / 2, 48, { size: 22, align: 'center', base: 'middle', color: best ? '#ffe14a' : '#aab1d0' });
 
+  if (!isStandalone()) ui.round(ctx, 'toggle:fullscreen', view.w - 208, 47, 28, (c, r, col) => fullscreenIcon(c, r, col, isFullscreen()));
   ui.round(ctx, 'toggle:sound', view.w - 142, 47, 28, (c, r, col) => speakerIcon(c, r, col, profile.settings.sound));
   ui.round(ctx, 'go:settings', view.w - 76, 47, 28, (c, r, col) => gearIcon(c, r, col));
 
